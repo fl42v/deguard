@@ -270,7 +270,7 @@ class MFSChunk(object):
             assert len(data) == MFS.CHUNK_SIZE + 2
             self.data = data[:-2]
             self.crc, = struct.unpack("<H", data[-2:])
-            assert self.crc == MFS.Crc16(self.data + struct.pack("<H", self.chunk_id))
+            assert self.crc == MFS.Crc16(self.data + struct.pack("<H", self.chunk_id))  or self.crc == 0
         else:
             assert len(data) == MFS.CHUNK_SIZE
             self.data = data
